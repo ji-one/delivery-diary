@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-
 Vue.use(VueRouter);
 
 const routes = [
@@ -10,11 +9,31 @@ const routes = [
     name: "Home",
     component: Home,
   },
+  {
+    path: "/signin",
+    name: "SignIn",
+    component: () => import("../views/SignIn.vue"),
+  },
+  {
+    path: "/signup",
+    name: "SignUp",
+    component: () => import("../views/SignUp.vue"),
+  },
+  {
+    path: "/mypage",
+    name: "MyPage",
+    component: () => import("../views/MyPage.vue"),
+  },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    component: () => import("../views/Dashboard.vue"),
+  },
 ];
 
 const router = new VueRouter({
   mode: "history",
-  base: process.env.BASE_URL,
+  // base: process.env.BASE_URL,
   routes,
 });
 
