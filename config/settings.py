@@ -53,11 +53,14 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'rest_auth',
+    'rest_framework',
+    'rest_framework_jwt',
     'rest_framework.authtoken',
     'rest_auth.registration',
-    'allauth.socialaccount',
+    # 'allauth.socialaccount',
     'django.contrib.sites'
 ]
+SITE_ID = 1
 # ACCOUNT_ADAPTER = 'common.adapter.CustomAccountAdapter'
 # REST_AUTH_REGISTER_SERIALIZERS = {
 #     'REGISTER_SERIALIZER': 'common.serializers.CustomRegisterSerializer',

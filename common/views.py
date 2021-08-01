@@ -8,6 +8,9 @@ from .serializers import UserSerializer
 from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import AllowAny
 from common.models import User
+from django.contrib.auth import login, authenticate
+from django.http import JsonResponse
+import jwt
 
 
 @permission_classes([AllowAny])
@@ -30,3 +33,19 @@ def signup(request):
         user.set_password(request.data.get('password'))
         user.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+@permission_classes([AllowAny])
+@api_view(['POST'])
+def signin(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+    user = authenticate(username=username, password=password)
+    if user:
+        login(request, user)
+        encoded_jwt = jwt.encode(
+            {'username': user.username, 'nickname': user.nickname, 'profile_image': str(user.profile_image), 'birthday': user.birthday.strftime('%Y-%m-%d'), 'phone_number': user.phone_number, 'address': user.address}, 'SECRET', algorithm='HS256').decode('utf-8')
+        response = JsonResponse({"token": str(encoded_jwt)})
+        return response
+
+    return Response({'error': 'User does not exist'}, status=status.HTTP_401_UNAUTHORIZED)

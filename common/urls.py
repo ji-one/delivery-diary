@@ -6,5 +6,5 @@ app_name = 'common'
 
 urlpatterns = [
      path('signup/', views.signup),
-     path('api-token-auth/', obtain_jwt_token),
+     path('api-token-auth/', views.signin),
 ]
