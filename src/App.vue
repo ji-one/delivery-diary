@@ -3,8 +3,15 @@
     <v-app-bar app color="blue-grey lighten-2" clipped-left>
       <v-spacer></v-spacer>
       <router-link to="/"></router-link>
-      <v-btn text color="white" to="/signin">SIGN IN</v-btn>
-      <v-btn text color="white" to="/signup">SIGN UP</v-btn>
+      <v-btn v-if="!this.$store.state.login" text color="white" to="/signin"
+        >SIGN IN</v-btn
+      >
+      <v-btn v-if="!this.$store.state.login" text color="white" to="/signup"
+        >SIGN UP</v-btn
+      >
+      <v-btn v-if="this.$store.state.login" text color="white" @click="signout"
+        >SIGN OUT</v-btn
+      >
     </v-app-bar>
     <v-navigation-drawer app clipped>
       <v-list rounded>
@@ -33,5 +40,10 @@ export default {
   name: "App",
 
   data: () => ({}),
+  methods: {
+    signout() {
+      // todo
+    },
+  },
 };
 </script>

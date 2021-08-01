@@ -11,14 +11,20 @@ const routes = [
   },
   {
     path: "/signin",
-    name: "SignIn",
-    component: () => import("../views/SignIn.vue"),
+    alias: "/signup",
+    name: "Auth",
+    component: () => import("../views/Auth.vue"),
   },
-  {
-    path: "/signup",
-    name: "SignUp",
-    component: () => import("../views/SignUp.vue"),
-  },
+  // {
+  //   path: "/signin",
+  //   name: "SignIn",
+  //   component: () => import("../views/SignIn.vue"),
+  // },
+  // {
+  //   path: "/signup",
+  //   name: "SignUp",
+  //   component: () => import("../views/SignUp.vue"),
+  // },
   {
     path: "/mypage",
     name: "MyPage",
