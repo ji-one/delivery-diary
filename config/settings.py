@@ -50,7 +50,18 @@ INSTALLED_APPS = [
     'common.apps.CommonConfig',
     'api.apps.ApiConfig',
     'corsheaders',
+    'allauth',
+    'allauth.account',
+    'rest_auth',
+    'rest_framework.authtoken',
+    'rest_auth.registration',
+    'allauth.socialaccount',
+    'django.contrib.sites'
 ]
+# ACCOUNT_ADAPTER = 'common.adapter.CustomAccountAdapter'
+# REST_AUTH_REGISTER_SERIALIZERS = {
+#     'REGISTER_SERIALIZER': 'common.serializers.CustomRegisterSerializer',
+# }
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -62,7 +73,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-CORS_ORIGIN_ALLOW_ALL = True 
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 ROOT_URLCONF = 'config.urls'
