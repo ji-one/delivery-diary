@@ -42,7 +42,8 @@ export default {
   data: () => ({}),
   methods: {
     signout() {
-      // todo
+      this.$store.commit("del_token");
+      this.$router.push({ name: "Home" });
     },
   },
 };

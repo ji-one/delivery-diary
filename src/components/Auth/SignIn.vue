@@ -54,7 +54,7 @@ export default {
           this.token = res.data.token;
           sessionStorage.token = this.token;
           this.decoded = jwt.decode(sessionStorage.token);
-          this.$store.commit("GET_TOKEN", this.decoded);
+          this.$store.commit("get_token", this.decoded);
           this.$router.push({ name: "Home" });
         })
         .catch((err) => {
