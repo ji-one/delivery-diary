@@ -8,6 +8,7 @@ export default new Vuex.Store({
     login: false,
     username: "",
     nickname: "",
+    profile_image: null,
     birthday: "",
     phone_number: "",
     address: "",
@@ -18,6 +19,7 @@ export default new Vuex.Store({
       state.login = true;
       state.username = token.username;
       state.nickname = token.nickname;
+      state.profile_image = token.profile_image;
       state.birthday = token.birthday;
       state.phone_number = token.phone_number;
       state.address = token.address;
@@ -26,6 +28,7 @@ export default new Vuex.Store({
       state.login = false;
       state.username = "";
       state.nickname = "";
+      state.profile_image = null;
       state.birthday = "";
       state.phone_number = "";
       state.address = "";
