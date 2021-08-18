@@ -5,7 +5,7 @@
         <v-card>
           <v-card-title>마이페이지</v-card-title>
           <v-card-text>
-            <v-form v-model="valid">
+            <v-form v-model="isValid">
               <v-text-field
                 label="아이디"
                 v-model="userInfo.username"
@@ -68,7 +68,14 @@
             </v-form>
             <v-card-actions class="justify-end">
               <ChangePassword />
-              <v-btn @click="update" rounded text color="primary">수정</v-btn>
+              <v-btn
+                :disabled="!isValid"
+                @click="update"
+                rounded
+                text
+                color="primary"
+                >수정</v-btn
+              >
             </v-card-actions>
           </v-card-text>
         </v-card>
@@ -92,6 +99,7 @@ export default {
         phone_number: "",
         address: "",
       },
+      isValid: false,
     };
   },
 
@@ -116,6 +124,7 @@ export default {
             .then((res) => {
               sessionStorage.token = res.data.token;
               this.$store.commit("get_token", jwt.decode(sessionStorage.token));
+              alert("성공적으로 수정되었습니다.");
             });
         });
     },

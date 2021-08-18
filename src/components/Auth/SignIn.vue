@@ -6,7 +6,7 @@
       ></v-img>
     </v-card-title>
     <v-card-text>
-      <v-form v-model="valid">
+      <v-form v-model="isValid">
         <v-text-field
           label="아이디"
           v-model="credentials.username"
@@ -26,7 +26,9 @@
       </v-form>
     </v-card-text>
     <v-card-actions class="justify-end">
-      <v-btn @click="signin" rounded text color="primary">로그인</v-btn>
+      <v-btn :disabled="!isValid" @click="signin" rounded text color="primary"
+        >로그인</v-btn
+      >
     </v-card-actions>
   </v-card>
 </template>
@@ -43,6 +45,7 @@ export default {
       },
       token: "",
       decoded: "",
+      isValid: false,
     };
   },
   methods: {
@@ -58,7 +61,7 @@ export default {
           this.$router.push({ name: "Home" });
         })
         .catch((err) => {
-          alert(err);
+          alert(err.response.data.error);
         });
     },
   },

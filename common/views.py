@@ -1,6 +1,4 @@
 from django.shortcuts import render
-
-# Create your views here.
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -23,8 +21,8 @@ def signup(request):
     if User.objects.filter(username=username).exists():
         return Response({'error': 'ID has already existed.'}, status=status.HTTP_400_BAD_REQUEST)
 
-    if password != password_confirmation:
-        return Response({'error': 'Passwords do not match.'}, status=status.HTTP_400_BAD_REQUEST)
+    # if password != password_confirmation:
+    #     return Response({'error': 'Passwords do not match.'}, status=status.HTTP_400_BAD_REQUEST)
 
     serializer = UserSerializer(data=request.data)
 
@@ -48,7 +46,7 @@ def signin(request):
         response = JsonResponse({"token": str(encoded_jwt)})
         return response
 
-    return Response({'error': 'User does not exist'}, status=status.HTTP_401_UNAUTHORIZED)
+    return JsonResponse({'error': 'User does not exist'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 @permission_classes([AllowAny])
@@ -71,8 +69,8 @@ def update_password(request):
     new_password = request.data.get('newPassword')
     password_confirmation = request.data.get('passwordConfirmation')
 
-    if new_password != password_confirmation:
-        return Response({'error': 'Passwords do not match.'}, status=status.HTTP_400_BAD_REQUEST)
+    # if new_password != password_confirmation:
+    #     return Response({'error': 'Passwords do not match.'}, status=status.HTTP_400_BAD_REQUEST)
 
     user.set_password(new_password)
     user.save()
