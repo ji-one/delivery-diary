@@ -23,4 +23,5 @@ urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
     path('api/', include('api.urls')),
     path('common/', include('common.urls')),
+    #path('/create', )
 ]
