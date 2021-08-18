@@ -21,7 +21,7 @@
           </v-list-item-icon>
           <v-list-item-title>Home</v-list-item-title>
         </v-list-item>
-        <v-list-item to="/mypage">
+        <v-list-item v-if="this.$store.state.login" to="/mypage">
           <v-list-item-icon>
             <v-icon>mdi-account</v-icon>
           </v-list-item-icon>
@@ -49,7 +49,7 @@ export default {
   methods: {
     signout() {
       this.$store.commit("del_token");
-      this.$router.push({ name: "Home" });
+      if (this.$route.path !== "/") this.$router.push({ name: "Home" });
     },
   },
 };
