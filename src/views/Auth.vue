@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <v-row justify="center">
+  <v-container fill-height fluid>
+    <v-row align="center" justify="center">
       <v-col cols="5">
         <component :is="component"></component>
       </v-col>

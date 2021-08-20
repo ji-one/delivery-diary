@@ -1,16 +1,13 @@
 <template>
   <v-card>
     <v-card-title>
-      <v-img
-        src="https://i.ibb.co/QdR6XMt/Kakao-Talk-Photo-2021-08-01-23-59-37.jpg"
-      ></v-img>
+      로그인
     </v-card-title>
     <v-card-text>
       <v-form v-model="isValid">
         <v-text-field
           label="아이디"
           v-model="credentials.username"
-          prepend-icon="mdi-account-circle"
           :rules="[(v) => !!v || '아이디를 입력해주세요.']"
           required
         >
@@ -18,14 +15,16 @@
         <v-text-field
           label="비밀번호"
           v-model="credentials.password"
-          prepend-icon="mdi-lock-outline"
-          type="password"
           :rules="[(v) => !!v || '비밀번호를 입력해주세요.']"
+          :type="isPasswordHide ? 'password' : 'text'"
+          :append-icon="isPasswordHide ? 'mdi-eye-off' : 'mdi-eye'"
+          @click:append="isPasswordHide = !isPasswordHide"
           required
         ></v-text-field>
       </v-form>
     </v-card-text>
-    <v-card-actions class="justify-end">
+    <v-card-actions class="justify-space-between">
+      <v-btn to="/signup" rounded text>회원이 아니신가요?</v-btn>
       <v-btn :disabled="!isValid" @click="signin" rounded text color="primary"
         >로그인</v-btn
       >
@@ -45,6 +44,7 @@ export default {
       },
       token: "",
       decoded: "",
+      isPasswordHide: true,
       isValid: false,
     };
   },

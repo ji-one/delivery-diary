@@ -1,22 +1,16 @@
 <template>
-  <v-container>
-    <v-row justify="center">
+  <v-container fill-height fluid>
+    <v-row justify="center" align="center">
       <v-col cols="5">
         <v-card>
           <v-card-title>마이페이지</v-card-title>
           <v-card-text>
             <v-form v-model="isValid">
-              <v-text-field
-                label="아이디"
-                v-model="userInfo.username"
-                prepend-icon="mdi-account-circle"
-                readonly
-              >
+              <v-text-field label="아이디" v-model="userInfo.username" readonly>
               </v-text-field>
               <v-text-field
                 label="닉네임"
                 v-model="userInfo.nickname"
-                prepend-icon="mdi-owl"
                 :rules="[(v) => !!v || '닉네임은 필수 입력사항입니다.']"
                 required
               >
@@ -34,7 +28,6 @@
                   <v-text-field
                     v-model="userInfo.birthday"
                     label="생일"
-                    prepend-icon="mdi-calendar"
                     readonly
                     v-bind="attrs"
                     v-on="on"
@@ -53,16 +46,19 @@
               <v-text-field
                 label="전화번호"
                 v-model="userInfo.phone_number"
-                prepend-icon="mdi-cellphone-android"
-                :rules="[(v) => !!v || '전화번호는 필수 입력사항입니다.']"
+                :rules="[
+                  (v) => !!v || '전화번호는 필수 입력사항입니다.',
+                  (v) => /^[0-9]+$/g.test(v) || '숫자만 입력해주세요.',
+                ]"
+                placeholder="하이픈(-)을 제외하고 숫자만 입력해 주세요."
                 required
               >
               </v-text-field>
               <v-text-field
                 label="주소"
                 v-model="userInfo.address"
-                prepend-icon="mdi-home-outline"
                 :rules="[(v) => !!v || '주소는 필수 입력사항입니다.']"
+                placeholder="일기 수령이 가능한 주소로 입력해주세요."
                 required
               ></v-text-field>
             </v-form>

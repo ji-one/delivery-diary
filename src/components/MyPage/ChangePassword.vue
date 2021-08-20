@@ -18,8 +18,10 @@
                   <v-text-field
                     label="새 비밀번호"
                     v-model="newPassword"
-                    type="password"
                     :rules="[(v) => !!v || '비밀번호는 필수 입력사항입니다.']"
+                    :type="isPasswordHide ? 'password' : 'text'"
+                    :append-icon="isPasswordHide ? 'mdi-eye-off' : 'mdi-eye'"
+                    @click:append="isPasswordHide = !isPasswordHide"
                     required
                   ></v-text-field>
                   <v-text-field
@@ -64,6 +66,7 @@ export default {
     newPassword: "",
     passwordConfirmation: "",
     dialog: false,
+    isPasswordHide: true,
     isValid: false,
   }),
   methods: {

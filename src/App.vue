@@ -4,13 +4,13 @@
       <v-spacer></v-spacer>
       <router-link to="/"></router-link>
       <v-btn v-if="!this.$store.state.login" text color="white" to="/signin"
-        >SIGN IN</v-btn
+        >로그인</v-btn
       >
       <v-btn v-if="!this.$store.state.login" text color="white" to="/signup"
-        >SIGN UP</v-btn
+        >회원가입</v-btn
       >
       <v-btn v-if="this.$store.state.login" text color="white" @click="signout"
-        >SIGN OUT</v-btn
+        >로그아웃</v-btn
       >
     </v-app-bar>
     <v-navigation-drawer app clipped>
@@ -38,6 +38,7 @@
     <v-main>
       <router-view />
     </v-main>
+    <v-footer></v-footer>
   </v-app>
 </template>
 
