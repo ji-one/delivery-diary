@@ -3,7 +3,7 @@
     <v-row justify="center" align="center">
       <v-col cols="5">
         <v-card>
-          <v-card-title>마이페이지</v-card-title>
+          <v-card-title>내 정보</v-card-title>
           <v-card-text>
             <v-form v-model="isValid">
               <v-text-field label="아이디" v-model="userInfo.username" readonly>
@@ -17,7 +17,6 @@
               </v-text-field>
               <v-menu
                 ref="menu"
-                v-model="menu"
                 :close-on-content-click="false"
                 :return-value.sync="date"
                 transition="scale-transition"
@@ -62,18 +61,18 @@
                 required
               ></v-text-field>
             </v-form>
-            <v-card-actions class="justify-end">
-              <ChangePassword />
-              <v-btn
-                :disabled="!isValid"
-                @click="update"
-                rounded
-                text
-                color="primary"
-                >수정</v-btn
-              >
-            </v-card-actions>
           </v-card-text>
+          <v-card-actions class="justify-end">
+            <ChangePassword class="ml-0"/>
+            <v-btn
+              :disabled="!isValid"
+              @click="update"
+              rounded
+              text
+              color="primary"
+              >수정</v-btn
+            >
+          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>

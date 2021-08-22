@@ -24,7 +24,7 @@
       </v-form>
     </v-card-text>
     <v-card-actions class="justify-space-between">
-      <v-btn to="/signup" rounded text>회원이 아니신가요?</v-btn>
+      <v-btn to="/signup" rounded text>아직 계정이 없으신가요?</v-btn>
       <v-btn :disabled="!isValid" @click="signin" rounded text color="primary"
         >로그인</v-btn
       >

@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title>회원가입</v-card-title>
+    <v-card-title>계정 만들기</v-card-title>
     <v-card-text>
       <v-form v-model="isValid">
         <v-text-field
@@ -87,13 +87,13 @@
         >
         </v-text-field>
       </v-form>
-      <v-card-actions class="justify-space-between">
-        <v-btn to="/signin" rounded text>이미 회원이신가요?</v-btn>
-        <v-btn :disabled="!isValid" @click="signup" rounded text color="primary"
-          >회원가입</v-btn
-        >
-      </v-card-actions>
     </v-card-text>
+    <v-card-actions class="justify-space-between">
+      <v-btn to="/signin" rounded text>이미 계정이 있으신가요?</v-btn>
+      <v-btn :disabled="!isValid" @click="signup" rounded text color="primary"
+        >계정 생성</v-btn
+      >
+    </v-card-actions>
   </v-card>
 </template>
 <script>
