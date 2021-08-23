@@ -10,7 +10,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     photo = models.ImageField(null=True,blank=True)
     content = models.CharField(max_length=4000)
-    pub_date = models.DateTimeField(auto_now=True)
+    # pub_date = models.DateTimeField(auto_now=True)
     weather = models.CharField(max_length=15)
     emotion = models.CharField(max_length=15)
 

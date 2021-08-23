@@ -23,7 +23,7 @@
       <div class="small_re5"></div>
     </div>
 
-    <div class="AddWrap">
+    <div class="AddWrap" @click="checkStatus">
       <form>
         <table class="tbAdd">
           <!--<colgroup>
@@ -136,6 +136,13 @@ export default {
     };
   },
   methods: {
+    checkStatus(){
+      if(!this.$store.state.login){
+        alert("로그인이 필요한 서비스입니다.")
+         this.$router.push({ path: "./signin" });
+        
+      }
+    },
     fnList() {
       //리스트 화면으로 이동 함수
       this.$router.push({ path: "./list", query: this.body });

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :style="{ background: $vuetify.theme.themes.light.background }">
     <v-app-bar app color="blue lighten-4">
       <router-link to="/">
         <v-btn icon>
@@ -44,6 +44,7 @@
         large
         rounded
         text
+        to="/dashboard"
         >MY DASHBOARD</v-btn
       >
       <v-menu offset-y v-if="this.$store.state.login">
