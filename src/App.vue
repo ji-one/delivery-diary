@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :style="{background: $vuetify.theme.themes.light.background}">
     <v-app-bar app color="blue lighten-4">
       <router-link to="/">
         <v-btn icon>
@@ -73,7 +73,7 @@
     <v-main>
       <router-view />
     </v-main>
-    <v-footer></v-footer>
+    <!--<v-footer></v-footer>-->
   </v-app>
 </template>
 <script>
