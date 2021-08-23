@@ -1,111 +1,483 @@
 <template>
- <div>
-   <h1><center><a href="/" class="logo"><img alt="Delivery Diary logo" src="../assets/test2.jpg" width="500"></a></center></h1>
-     <h2>일기 작성</h2>
+  <div>
+    <h1>
+      <center>
+        <a href="/" class="logo"
+          ><img alt="Delivery Diary logo" src="../assets/test2.jpg" width="500"
+        /></a>
+      </center>
+    </h1>
+    <h2 class="diarywrite">Write on your Lifesyle & Story</h2>
+    <div class="etc">
+      <img class="image1" src="../assets/sky.jpg" alt="skypicture" />
+      <img class="image2" src="../assets/image.png" alt="etcimage" />
+      <img class="image3" src="../assets/fallen_angels.jpg" alt="steal_movie" />
+      <img class="image4" src="../assets/dark_sky.jpg" alt="dark_sky" />
+      <img class="image5" src="../assets/lola.jpg" alt="steal_movie2" />
+      <img class="image6" src="../assets/night.jpg" alt="night" />
+      <div class="rectangle"></div>
+      <div class="small_re"></div>
+      <div class="small_re2"></div>
+      <div class="small_re3"></div>
+      <div class="small_re4"></div>
+      <div class="small_re5"></div>
+    </div>
 
-     <div class="AddWrap">
-         <form>
-             <table class ="tbAdd">
-                 <colgroup>
+    <div class="AddWrap">
+      <form>
+        <table class="tbAdd">
+          <!--<colgroup>
                     <col width="200"/>
-                 </colgroup>
-                 <tr>
-                     <th>제목</th>
-                     <td><input type="text" v-model="subject" ref="subject">
-                     <col width="1000"/>
-                     </td>
-                 </tr>
-				<tr>
-					<th>날씨</th>
-					<div class="form-check form-group">
-						<input v-model.number="typeOfTask" class="form-check-input" type="radio" :value="맑음" id="맑음">
-						<label class="form-check-label" for="맑음">
-							맑음</label>
-						<input v-model.number="typeOfTask" class="form-check-input" type="radio" :value="2" id="흐림">
-						<label class="form-check-label" for="흐림">
-							흐림</label>
-						<input v-model.number="typeOfTask" class="form-check-input" type="radio" :value="3" id="비">
-						<label class="form-check-label" for="비">
-							비</label>
-						<input v-model.number="typeOfTask" class="form-check-input" type="radio" :value="4" id="눈">
-						<label class="form-check-label" for="눈">
-							눈</label>
-						</div>
-				</tr>
-                 <tr>
-                   <th>내용</th>
-                   <td><textarea v-model="cont" ref="cont"></textarea></td>
-                 </tr>
-             </table>
-         </form>
-     </div>
+                 </colgroup>-->
+          <tr>
+            <th aria-label="제목"></th>
+            <td>
+              <input
+                type="text"
+                v-model="subject"
+                ref="subject"
+                placeholder="제목을 입력하세요"
+              />
+              <col width="1000" />
+            </td>
+          </tr>
+          <tr>
+            <th aria-label="날씨"></th>
+            <div class="form-check form-group">
+              <input
+                v-model.number="typeOfTask"
+                class="form-check-input"
+                type="radio"
+                :value="맑음"
+                id="맑음"
+              />
+              <div class="radio__radio"></div>
+              <label class="form-check-label" for="맑음">
+                <img src="../assets/sun_weather_icon.png" alt="weather-sunny" />
+              </label>
+              <input
+                v-model.number="typeOfTask"
+                class="form-check-input"
+                type="radio"
+                :value="2"
+                id="흐림"
+              />
+              <div class="radio__radio"></div>
+              <label class="form-check-label" for="흐림">
+                <img
+                  src="../assets/cloudy_weather_icon.png"
+                  alt="weather-cloudy"
+                />
+              </label>
+              <input
+                v-model.number="typeOfTask"
+                class="form-check-input"
+                type="radio"
+                :value="3"
+                id="비"
+              />
+              <div class="radio__radio"></div>
+              <label class="form-check-label" for="비">
+                <img
+                  src="../assets/rain_weather_icon.png"
+                  alt="weather-rainy"
+                />
+              </label>
+              <input
+                v-model.number="typeOfTask"
+                class="form-check-input"
+                type="radio"
+                :value="4"
+                id="눈"
+              />
+              <div class="radio__radio"></div>
+              <label class="form-check-label" for="눈">
+                <img
+                  src="../assets/snowy_weather_icon.png"
+                  alt="weather-snowy"
+                />
+              </label>
+            </div>
+          </tr>
+          <tr>
+            <th aria-label="내용"></th>
+            <td>
+              <textarea
+                v-model="cont"
+                ref="cont"
+                placeholder="오늘의 이야기를 시작하세요"
+              ></textarea>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
 
-     <div class="btnWrap">
-         <a href="javascripit:;" @click="fnList" class="btn">목록</a>
-         <a href="javascripit:;" @click="fnAddProc" class="btnAdd_btn">등록</a>
-     </div>
- </div>
+    <div class="btnWrap">
+      <a href="javascripit:;" @click="fnList" class="btn">목록</a>
+      <a href="javascripit:;" @click="fnAddProc" class="btnAdd_btn">등록</a>
+    </div>
+  </div>
 </template>
 
 
 
 <script>
 export default {
-	data() { //변수 생성
-		return{
-			board_code:'news'
-			,subject:''
-			,cont:''
-			,id:'admin',
-			//,form:'' //form 전송 데이터
-			typeOfTask: null,
-		}
-	}
-	,methods:{
-		fnList(){ //리스트 화면으로 이동 함수
-			this.$router.push({path:'./list',query:this.body});
-			
-		}
-		,fnAddProc() { //등록 프로세스
-			if(!this.subject) { //제목이 없다면 값을 입력하라고 알려준다.
-				alert("제목을 입력해 주세요");
-				this.$refs.subject.focus(); //방식으로 선택자를 찾는다.
-				return;
-			}
+  data() {
+    //변수 생성
+    return {
+      board_code: "news",
+      subject: "",
+      cont: "",
+      id: "admin",
+      //,form:'' //form 전송 데이터
+      typeOfTask: null,
+    };
+  },
+  methods: {
+    fnList() {
+      //리스트 화면으로 이동 함수
+      this.$router.push({ path: "./list", query: this.body });
+    },
+    fnAddProc() {
+      //등록 프로세스
+      if (!this.subject) {
+        //제목이 없다면 값을 입력하라고 알려준다.
+        alert("제목을 입력해 주세요");
+        this.$refs.subject.focus(); //방식으로 선택자를 찾는다.
+        return;
+      }
 
-			this.form = { //backend로 전송될 POST 데이터
-				board_code:this.board_code
-				,subject:this.subject
-				,cont:this.cont
-				,id:this.id
-			} 
-			
-			this.axios.post('http://localhost:3000/api/delivery-diary',this.form)
-			.then((res)=>{
-				if(res.data.success) {
-					alert('등록되었습니다.');
-					this.fnList();
-				} else {
-					alert("실행중 실패했습니다.\n다시 이용해 주세요");
-				}
-			})
-			.catch((err)=>{
-				console.log(err);
-			})
-			
-		}
-	}	
-}
+      this.form = {
+        //backend로 전송될 POST 데이터
+        board_code: this.board_code,
+        subject: this.subject,
+        cont: this.cont,
+        id: this.id,
+      };
+
+      this.$axios
+        .post("http://localhost:3000/api/delivery-diary", this.form)
+        .then((res) => {
+          if (res.data.success) {
+            alert("등록되었습니다.");
+            this.fnList();
+          } else {
+            alert("실행중 실패했습니다.\n다시 이용해 주세요");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+};
 </script>
 
 <style scoped>
-	.tbAdd{border-top:1px solid #888;}
-	.tbAdd th, .tbAdd td{border-bottom:1px solid #eee; padding:5px 0;}
-	.tbAdd td{padding:10px 10px; box-sizing:border-box;}
-	.tbAdd td input{width:100%; min-height:30px; box-sizing:border-box; padding:0 10px;}
-	.tbAdd td textarea{width:100%; min-height:300px; padding:10px; box-sizing:border-box;}
-	.btnWrap{text-align:center; margin:20px 0 0 0;}
-	.btnWrap a{margin:0 10px;}
-	.btnAdd {background:#43b984}
-	.btnDelete{background:#f00;}
+.diarywrite {
+  text-align: center;
+  padding-bottom: 20px;
+}
+.diarywrite {
+  font-family: "IBM Plex Sans KR", sans-serif !important;
+  font-weight: 300;
+}
+.image1 {
+  position: absolute;
+  border-radius: 5px;
+  border: 1px solid whitesmoke;
+  border-width: 20px 10px 70px 10px;
+  bottom: 500px;
+  right: 50px;
+  width: 200px;
+  height: 350px;
+  z-index: 2;
+  transition: transform 1.3s;
+}
+.image1:hover {
+  transform: scale(1.05);
+  transition: transform 1.3s;
+}
+
+.image2 {
+  position: absolute;
+  border-radius: 4px;
+  bottom: 200px;
+  left: 80px;
+  width: 150px;
+  height: 200px;
+  z-index: 4;
+  transition: transform 1s;
+}
+.image3 {
+  position: absolute;
+  border-radius: 4px;
+  bottom: 420px;
+  left: 80px;
+  width: 150px;
+  height: 200px;
+  z-index: 8;
+  transition: transform 1s;
+}
+.image4 {
+  position: absolute;
+  border-radius: 4px;
+  bottom: -20px;
+  left: 80px;
+  width: 150px;
+  height: 200px;
+  z-index: 4;
+  transition: transform 1s;
+}
+
+.image5 {
+  position: absolute;
+  border-radius: 4px;
+  bottom: 640px;
+  left: 80px;
+  width: 150px;
+  height: 200px;
+  z-index: 4;
+  transition: transform 1s;
+}
+
+.image6 {
+  position: absolute;
+  border-radius: 4px;
+  bottom: 860px;
+  left: 80px;
+  width: 150px;
+  height: 200px;
+  z-index: 4;
+  transition: transform 1s;
+}
+
+.image2:hover {
+  transform: scale(1.03);
+  transition: transform 1s;
+}
+.image3:hover {
+  transform: scale(1.03);
+  transition: transform 1s;
+}
+.image4:hover {
+  transform: scale(1.03);
+  transition: transform 1s;
+}
+.image5:hover {
+  transform: scale(1.03);
+  transition: transform 1s;
+}
+.image6:hover {
+  transform: scale(1.03);
+  transition: transform 1s;
+}
+
+.rectangle {
+  position: absolute;
+  border-radius: 5px;
+  bottom: 480px;
+  right: -10;
+  width: 280px;
+  height: 390px;
+  background-color: rgba(30, 143, 255, 0.37);
+  z-index: 1;
+}
+.small_re {
+  position: absolute;
+  background-color: rgb(157, 148, 180);
+  width: 200px;
+  height: 1000px;
+  bottom: -30px;
+  left: 56px;
+  z-index: 3;
+}
+.small_re2 {
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  width: 120px;
+  height: 20px;
+  bottom: 250px;
+  left: 70px;
+  z-index: 6;
+}
+.small_re3 {
+  position: absolute;
+  background-color: rgb(81, 190, 253);
+  width: 100px;
+  height: 20px;
+  bottom: 150px;
+  left: 180px;
+  z-index: 7;
+}
+.small_re4 {
+  position: absolute;
+  background-color: white;
+  width: 90px;
+  height: 20px;
+  left: 70px;
+  bottom: 700px;
+  z-index: 8;
+}
+.small_re5 {
+  position: absolute;
+  background-color: rgb(81, 190, 253);
+  width: 120px;
+  height: 20px;
+  left: 160px;
+  bottom: 450px;
+  z-index: 8;
+}
+
+/*일단 이거 중앙으로 배치하는 거 고민해야함.*/
+/*.tbAdd{border-top:1px solid #888;}<<이 부분은 단순히 탑이 아니라 둘러싸는 걸로 만들었으면 한다.*/
+/*.tbAdd th, .tbAdd td {
+		border-bottom:1px solid #eee; padding:5px 0; 
+		
+	}*/
+.AddWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tbAdd {
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgb(230, 226, 226);
+  border-radius: 4px;
+}
+.tbAdd th {
+  content: "";
+}
+.tbAdd td {
+  padding: 10px 10px;
+  box-sizing: border-box;
+}
+.tbAdd td input {
+  font-family: "IBM Plex Sans KR", sans-serif !important;
+  font-weight: 700;
+  font-size: 20px;
+  width: 100%;
+  min-height: 30px;
+  box-sizing: border-box;
+  padding: 0 10px;
+  border: none;
+  outline: none;
+  resize: none;
+}
+.tbAdd td input::placeholder {
+  text-align: center;
+}
+
+.form-check.form-group {
+  display: block;
+  float: right;
+}
+
+.form-check-input {
+  display: none;
+  padding: 20px 20px;
+  margin: 0.5rem;
+}
+.radio__radio {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  border: 2px solid #d8e4e2;
+  border-radius: 50%;
+  /*margin-right: 10px;*/
+  box-sizing: border-box;
+  padding: 2px;
+}
+.radio__radio::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-color: dodgerblue;
+  border-radius: 50%;
+
+  transform: scale(0);
+  transition: transform 0.15s;
+}
+
+.form-check-input:checked + .radio__radio::after {
+  transform: scale(1);
+}
+
+.form-check-label {
+  display: inline-block;
+  padding: 20px;
+}
+.form-check-label img {
+  width: 50px;
+  height: 50px;
+}
+
+.tbAdd td textarea {
+  width: 100%;
+  min-height: 300px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  resize: none;
+}
+.tbAdd td textarea::placeholder {
+  text-align: center;
+}
+
+.btnWrap {
+  text-align: center;
+  margin: 40px 40px 0 0;
+}
+.btnWrap a {
+  margin: 20 10px;
+  text-align: center;
+}
+.btnAdd {
+  background: #43b984;
+}
+.btnDelete {
+  background: #f00;
+}
+.btn {
+  position: relative;
+  color: black;
+  text-decoration: none;
+  border: 1px solid #d9d6e2;
+  padding: 10px 15;
+  border-radius: 6px;
+  margin-right: 30px;
+  transition-property: background-color;
+  transition-duration: 1s;
+}
+.btn:hover {
+  background-color: #d9d6e2;
+}
+.btn:active {
+  transition-property: background-color;
+  transition-duration: 1s;
+  background-color: #a3a1a7;
+}
+.btnadd_btn {
+  position: relative;
+  color: black;
+  text-decoration: none;
+  border: 1px solid #2381f5;
+  padding: 10px 15;
+  border-radius: 6px;
+  transition-property: background-color;
+  transition-duration: 1s;
+}
+.btnadd_btn:hover {
+  background-color: #2381f5;
+}
+.btnadd_btn:active {
+  transition-property: background-color;
+  transition-duration: 1s;
+  background-color: #0877ff;
+}
 </style>
