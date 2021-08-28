@@ -110,10 +110,10 @@ export default {
     update() {
       const jwt = require("jsonwebtoken");
       this.axios
-        .patch("http://localhost:8000/common/update/info/", this.userInfo)
+        .patch("common/update/info/", this.userInfo)
         .then(() => {
           this.axios
-            .post("http://localhost:8000/common/api-token-auth/refresh/", {
+            .post("common/api-token-auth/refresh/", {
               username: this.userInfo.username,
             })
             .then((res) => {

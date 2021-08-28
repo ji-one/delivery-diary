@@ -117,7 +117,7 @@ export default {
   methods: {
     signup() {
       this.axios
-        .post("http://localhost:8000/common/signup/", this.credentials)
+        .post("common/signup/", this.credentials)
         .then((res) => {
           console.log(res);
           this.$router.push({ name: "Home" });

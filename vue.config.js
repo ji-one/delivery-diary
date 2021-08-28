@@ -24,7 +24,15 @@ module.exports = {
     index: "src/main.js",
   },
 
-  transpileDependencies: [
-    'vuetify'
-  ]
+  transpileDependencies: ["vuetify"],
+  devServer: {
+    proxy: {
+      "/": {
+        target: "http://localhost:8000",
+        pathRewrite: { "^/": "" },
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 };
