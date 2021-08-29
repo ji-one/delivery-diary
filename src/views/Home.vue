@@ -30,15 +30,12 @@
     <div class="AddWrap" @click="checkStatus">
       <form>
         <table class="tbAdd">
-          <!--<colgroup>
-                    <col width="200"/>
-                 </colgroup>-->
           <tr>
             <th aria-label="제목"></th>
             <td>
               <input
                 type="text"
-                v-model="subject"
+                v-model="title"
                 ref="subject"
                 placeholder="제목을 입력하세요"
               />
@@ -49,7 +46,7 @@
             <th aria-label="날씨"></th>
             <div class="form-check form-group">
               <input
-                v-model.number="typeOfTask"
+                v-model.number="weather"
                 class="form-check-input"
                 type="radio"
                 :value="1"
@@ -60,7 +57,7 @@
                 <img src="../assets/sun_weather_icon.png" alt="weather-sunny" />
               </label>
               <input
-                v-model.number="typeOfTask"
+                v-model.number="weather"
                 class="form-check-input"
                 type="radio"
                 :value="2"
@@ -74,7 +71,7 @@
                 />
               </label>
               <input
-                v-model.number="typeOfTask"
+                v-model.number="weather"
                 class="form-check-input"
                 type="radio"
                 :value="3"
@@ -88,7 +85,7 @@
                 />
               </label>
               <input
-                v-model.number="typeOfTask"
+                v-model.number="weather"
                 class="form-check-input"
                 type="radio"
                 :value="4"
@@ -107,8 +104,7 @@
             <th aria-label="내용"></th>
             <td>
               <textarea
-                v-model="cont"
-                ref="cont"
+                v-model="content"
                 placeholder="오늘의 이야기를 시작하세요"
               ></textarea>
             </td>
@@ -116,35 +112,26 @@
         </table>
       </form>
     </div>
-
     <div class="btnWrap">
-      <!--<a href="javascripit:;" @click="fnList" class="btn">임시목록</a>-->
-      <a href="javascripit:;" @click="fnAddProc" class="btnAdd_btn">등록</a>
+      <btn @click="fnAddProc" class="btnAdd_btn">등록</btn>
     </div>
   </div>
 </template>
-
-
-
 <script>
 export default {
   data() {
     //변수 생성
     return {
-      board_code: "news",
-      subject: "",
-      cont: "",
-      id: "admin",
-      //,form:'' //form 전송 데이터
-      typeOfTask: null,
+      title: "",
+      content:"",
+      weather:"",
     };
   },
   methods: {
     checkStatus(){
       if(!this.$store.state.login){
         alert("로그인이 필요한 서비스입니다.")
-         this.$router.push({ path: "./signin" });
-        
+        this.$router.push({ path: "./signin" });
       }
     },
     fnList() {
@@ -153,7 +140,7 @@ export default {
     },
     fnAddProc() {
       //등록 프로세스
-      if (!this.subject) {
+      if (!this.title) {
         //제목이 없다면 값을 입력하라고 알려준다.
         alert("제목을 입력해 주세요");
         this.$refs.subject.focus(); //방식으로 선택자를 찾는다.
@@ -162,21 +149,15 @@ export default {
 
       this.form = {
         //backend로 전송될 POST 데이터
-        board_code: this.board_code,
-        subject: this.subject,
-        cont: this.cont,
-        id: this.id,
+        title: this.title,
+        content: this.content,
+        weather: this.weather,
       };
 
-      this.$axios
-        .post("http://localhost:3000/api/delivery-diary", this.form)
+      this.axios
+        .post("api/", this.form)
         .then((res) => {
-          if (res.data.success) {
-            alert("등록되었습니다.");
-            this.fnList();
-          } else {
-            alert("실행중 실패했습니다.\n다시 이용해 주세요");
-          }
+          console.log(res)
         })
         .catch((err) => {
           console.log(err);
