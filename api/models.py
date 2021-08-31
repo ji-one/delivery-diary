@@ -1,5 +1,5 @@
 from django.db import models
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 from datetime import datetime
 from django.utils import timezone
 from django.conf import settings
@@ -13,6 +13,7 @@ class Diary(models.Model):
     # photo = models.ImageField(null=True, blank=True)
     content = models.CharField(max_length=1000)
     created_at = models.DateTimeField(auto_now_add=True)
+    content_len = models.IntegerField(default=0)
 
     def __str__(self):
-        return "%s" % (self.title)
+        return self.title
