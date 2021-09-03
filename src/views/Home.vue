@@ -8,25 +8,17 @@
         <span class="logotext"><strong>Delivery Diary</strong></span>
       </center>
     </h1>
-    <h2 class="diarywrite">Write on your Lifestyle & Story</h2>
-    <div class="etc">
-      <img class="image1" src="../assets/sky.jpg" alt="skypicture" />
-      <img class="image2" src="../assets/image.png" alt="etcimage" />
-      <img class="image3" src="../assets/fallen_angels.jpg" alt="steal_movie" />
-      <img class="image4" src="../assets/dark_sky.jpg" alt="dark_sky" />
-      <img class="image5" src="../assets/lola.jpg" alt="steal_movie2" />
-      <img class="image6" src="../assets/night.jpg" alt="night" />
-      <img class="tape1" src="../assets/papertape.png" alt="papertape" />
-      <img class="tape2" src="../assets/papertape2.png" alt="papertape2" />
-      <img class="flower" src="../assets/flower.png" alt="flower" />
-      <div class="rectangle"></div>
-      <div class="small_re"></div>
-      <div class="small_re2"></div>
-      <div class="small_re3"></div>
-      <div class="small_re4"></div>
-      <div class="small_re5"></div>
-    </div>
-
+    <h2 class="diarywrite">WRITE ON YOUR LIFESTYLE & STORY</h2>
+   <div id="circle-wrapper">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
     <div class="AddWrap">
       <form>
         <table class="tbAdd">
@@ -174,40 +166,12 @@ export default {
         .catch((err) => {
           console.log(err);
         });
-    },
+         },
   },
 };
 </script>
 
 <style scoped>
-/*반응형 웹
-
-반응 기준
-
-로고 관련 앵커가 너무 아래에 배치되어있음. 변환필요.<ok>
-
-페이지 색 정해보기
-
-입력창은 고정 값이 있는 것 같긴하다.
-사진은 오히려 뒤에서 좌우 값에 따라 움직이네
-이걸 없앨지를 정해야함
-오른쪽은 right0이라서 벽에 붙어있고
-왼쪽이 바뀐디
-
-입력창의 사이즈/입력창 좌우 패딩값(은있고)
-최소 고정값을 정해놓으면 될듯<ok>
-
-사진 없애는 것
-
-글자수 입력하는 값 뜨도록 넣기///
-
-사진 가로 정열할지말지.*/
-
-/*.logo img { 
-            margin-top: 50px;
-            
-            }*/
-
 .title-logo { padding: 50px 0;}
 .logotext { 
   font-family: "IBM Plex Sans KR", sans-serif !important;
@@ -218,14 +182,14 @@ export default {
   text-shadow: 1px 2px 0 rgb(32, 95, 177);
 }
 .logotext:hover {
-   text-shadow: 1px 2px 0 rgb(32, 95, 177),
-                2px 4px 0 rgb(32, 95, 177),
-                3px 6px 0 rgb(32, 95, 177),
-                4px 8px 0 rgb(32, 95, 177),
-                5px 10px 0 rgb(32, 95, 177),
-                6px 12px 0 rgb(32, 95, 177),
+   text-shadow: 1px 2px 0 rgb(97, 138, 209),
+                2px 4px 0 rgb(97, 138, 209),
+                3px 6px 0 rgb(97, 138, 209),
+                4px 8px 0 rgb(97, 138, 209),
+                5px 10px 0 rgb(97, 138, 209),
+                6px 12px 0 rgb(97, 138, 209),
               
-                6px 12px 3px rgba(32, 95, 177,0.8);
+                6px 12px 3px rgb(97, 138, 209);
 }
 .diarywrite {
   text-align: center;
@@ -233,162 +197,8 @@ export default {
 }
 .diarywrite {
   font-family: "IBM Plex Sans KR", sans-serif !important;
-  
-  font-weight: 300;
-}
-.tape1,
-  .tape2,
-  .flower{
-    display: none;
-    position: absolute;
-  }
-.image1 {
-  position: absolute;
-  border-radius: 5px;
-  border: 1px solid whitesmoke;
-  border-width: 20px 10px 70px 10px;
-  bottom: 500px;
-  right: 50px;
-  width: 200px;
-  height: 350px;
-  z-index: 2;
-  transition: transform 1.3s;
-}
-.image1:hover {
-  transform: scale(1.05);
-  transition: transform 1.3s;
-}
-
-.image2 {
-  position: absolute;
-  border-radius: 4px;
-  bottom: 200px;
-  left: 80px;
-  width: 150px;
-  height: 200px;
-  z-index: 4;
-  transition: transform 1s;
-}
-.image3 {
-  position: absolute;
-  border-radius: 4px;
-  bottom: 420px;
-  left: 80px;
-  width: 150px;
-  height: 200px;
-  z-index: 8;
-  transition: transform 1s;
-}
-.image4 {
-  position: absolute;
-  border-radius: 4px;
-  bottom: -20px;
-  left: 80px;
-  width: 150px;
-  height: 200px;
-  z-index: 4;
-  transition: transform 1s;
-}
-
-.image5 {
-  position: absolute;
-  border-radius: 4px;
-  bottom: 640px;
-  left: 80px;
-  width: 150px;
-  height: 200px;
-  z-index: 4;
-  transition: transform 1s;
-}
-
-.image6 {
-  position: absolute;
-  border-radius: 4px;
-  bottom: 860px;
-  left: 80px;
-  width: 150px;
-  height: 200px;
-  z-index: 4;
-  transition: transform 1s;
-}
-
-.image2:hover {
-  transform: scale(1.03);
-  transition: transform 1s;
-}
-.image3:hover {
-  transform: scale(1.03);
-  transition: transform 1s;
-}
-.image4:hover {
-  transform: scale(1.03);
-  transition: transform 1s;
-}
-.image5:hover {
-  transform: scale(1.03);
-  transition: transform 1s;
-}
-.image6:hover {
-  transform: scale(1.03);
-  transition: transform 1s;
-}
-
-.rectangle {
-  position: absolute;
-  border-radius: 5px;
-  bottom: 480px;
-  right: -10;
-  width: 280px;
-  height: 390px;
-  background-color: rgba(30, 143, 255, 0.37);
-  z-index: 1;
-}
-.small_re {
-  position: absolute;
-  background-color: rgb(157, 148, 180);
-  width: 200px;
-  height: 1500px;
-  bottom: -30px;
-  left: 56px;
-  z-index: 3;
-}
-.small_re2 {
-  position: absolute;
-  background-color: rgb(255, 255, 255);
-  width: 120px;
-  height: 20px;
-  bottom: 250px;
-  left: 70px;
-  z-index: 6;
-}
-.small_re3 {
-  position: absolute;
-  background-color: rgb(81, 190, 253);
-  width: 100px;
-  height: 20px;
-  bottom: 150px;
-  left: 180px;
-  z-index: 7;
-}
-.small_re4 {
-  position: absolute;
-  background-color: white;
-  width: 90px;
-  height: 20px;
-  left: 70px;
-  bottom: 700px;
-  z-index: 8;
-}
-.small_re5 {
-  position: absolute;
-  background-color: rgb(81, 190, 253);
-  width: 120px;
-  height: 20px;
-  left: 160px;
-  bottom: 450px;
-  z-index: 8;
-}
-
+  /*font-family: 'Raleway', sans-serif */
+  font-weight: 300;}
 
 /*.tbAdd{border-top:1px solid #888;}<<이 부분은 단순히 탑이 아니라 둘러싸는 걸로 만들었으면 한다.*/
 /*.tbAdd th, .tbAdd td {
@@ -403,13 +213,14 @@ export default {
 }
 .tbAdd {
   position: relative;
-  background-color: white;
+  background-color:/* #E3E6FF;*/ white;
   flex-direction: column;
   align-items: center;
   /*border: 1px solid rgb(230, 226, 226);*/
   border-radius: 5px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+ /* box-shadow: 0 0 20px rgba(0,0,0,0.15);*/
   z-index: 10;
+  
 }
 .tbAdd th {
   content: "";
@@ -419,16 +230,21 @@ export default {
   box-sizing: border-box;
 }
 .tbAdd td input {
-  font-family: "IBM Plex Sans KR", sans-serif !important;
-  font-weight: 700;
+  font-family: 'Lato', sans-serif !important;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
   font-size: 20px;
   width: 100%;
-  min-height: 30px;
+  min-height: 50px;
   box-sizing: border-box;
   padding: 0 10px;
   border: none;
   outline: none;
   resize: none;
+  color: rgb(77, 80, 94);
+  background-color: rgba(68,114,196,0.2);
+  border-radius: 30px;
+  text-align: center;
 }
 .tbAdd td input::placeholder {
   text-align: center;
@@ -475,8 +291,8 @@ export default {
   padding: 20px;
 }
 .form-check-label img {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
 }
 
 .tbAdd td textarea {
@@ -538,6 +354,7 @@ export default {
   transition-property: background-color;
   transition-duration: 1s;
 }
+
 .btnadd_btn:hover {
   background-color: #2381f5;
 }
@@ -547,206 +364,77 @@ export default {
   background-color: #0877ff;
 }
 
+#circle-wrapper { 
+  position: relative;
+
+}
+
+.circle {
+  width: 246px;
+  height: 246px;
+  border-radius: 50%;
+  
+  
+}
+.circle:nth-child(1) {
+ position: absolute;
+ background-color: transparent;
+ border: 1px solid rgba(0, 0, 0, 0.5);
+ left: 100px;
+ top: 100px;
+}
+.circle:nth-child(2) {
+  position: absolute;
+  background-color: #ffc000;
+  left: 10px;
+  top: 10px;
+}
+.circle:nth-child(3) {
+  position: absolute;
+  background-color: rgba(68,114,196,0.7);
+  bottom: 100px;
+  left: -100px;
+}
+.circle:nth-child(4) {
+ position: absolute;
+ background-color: transparent;
+ border: 1px solid rgba(0, 0, 0, 0.5);
+ right: 100px;
+ top: 100px;
+}
+.circle:nth-child(5) {
+  position: absolute;
+  background-color: #ffc000;
+  bottom: -40px;
+  right: 30px;
+}
+.circle:nth-child(6) {
+  position: absolute;
+  background-color: rgba(68,114,196,0.7);
+  bottom: 100px;
+  right: -100px;
+}
+.circle:nth-child(7) {
+  position: absolute;
+  background-color: transparent;
+  border: 1px solid rgba(68,114,196,0.7);
+  top: 400px;
+  left: -100px;
+}
+.circle:nth-child(8) {
+  position: absolute;
+  background-color: rgba(68,114,196,1);
+  top: 500px;
+  right: -100px;
+}
+
 /*Media Query-반응형 웹*/
 @media screen and (max-width: 1000px){
 
-  .tape1,
-  .tape2,
-  .flower{
-    display: block;
-    position: absolute;
-  }
-  .tape1 {
-    width: 200px;
-    height: 50px;
-    bottom: 700px;
-    right: 50px;
-    -webkit-animation: shake .4s ease-in-out .4s infinite alternate;
-  }
-  .tape2 {
-    width: 200px;
-    height: 50px;
-    bottom: 680px;
-    right: 35px;
-    -webkit-animation: shake2 .5s ease-in-out .5s infinite alternate;
-  }
-  .flower {
-    bottom: 605px;
-    width: 180px;
-    height: 90px;
-    left: 60px;
-  }
-
-  @-webkit-keyframes shake {
-    from { -webkit-transform: rotate(0deg);}
-    to { -webkit-transform: rotate(-2deg);
-        -webkit-transform-origin: center center;}
-  }
-  @-webkit-keyframes shake2 {
-    from { -webkit-transform: rotate(0deg);}
-    to { -webkit-transform: rotate(-1deg);
-        -webkit-transform-origin: center center;}
-  }
+}
+/*반응형 웹 <=665*/
+@media screen and (max-width: 665px){
+}
   
-  .image1 {
-  display:none;
-  position: absolute;
-  border-radius: 5px;
-  border: 1px solid whitesmoke;
-  border-width: 20px 10px 70px 10px;
-  bottom: 500px;
-  right: 50px;
-  width: 200px;
-  height: 350px;
-  z-index: 2;
-  transition: transform 1.3s;
-}
-.image1:hover {
-  transform: scale(1.05);
-  transition: transform 1.3s;
-}
-
-.image2 {
-  display:none;
-  position: absolute;
-  border-radius: 4px;
-  bottom: 200px;
-  left: 80px;
-  width: 150px;
-  height: 200px;
-  z-index: 4;
-  transition: transform 1s;
-}
-.image3 {
-  display:none;
-  position: absolute;
-  border-radius: 4px;
-  bottom: 420px;
-  left: 80px;
-  width: 150px;
-  height: 200px;
-  z-index: 8;
-  transition: transform 1s;
-}
-.image4 {
-  display:none;
-  position: absolute;
-  border-radius: 4px;
-  bottom: -20px;
-  left: 80px;
-  width: 150px;
-  height: 200px;
-  z-index: 4;
-  transition: transform 1s;
-}
-
-.image5 {
-  display:none;
-  position: absolute;
-  border-radius: 4px;
-  bottom: 640px;
-  left: 80px;
-  width: 150px;
-  height: 200px;
-  z-index: 4;
-  transition: transform 1s;
-}
-
-.image6 {
-  display:none;
-  position: absolute;
-  border-radius: 4px;
-  bottom: 860px;
-  left: 80px;
-  width: 150px;
-  height: 200px;
-  z-index: 4;
-  transition: transform 1s;
-}
-
-.image2:hover {
-  transform: scale(1.03);
-  transition: transform 1s;
-}
-.image3:hover {
-  transform: scale(1.03);
-  transition: transform 1s;
-}
-.image4:hover {
-  transform: scale(1.03);
-  transition: transform 1s;
-}
-.image5:hover {
-  transform: scale(1.03);
-  transition: transform 1s;
-}
-.image6:hover {
-  transform: scale(1.03);
-  transition: transform 1s;
-}
-
-.rectangle {
-  display:none;
-  position: absolute;
-  border-radius: 5px;
-  bottom: 480px;
-  right: -10;
-  width: 280px;
-  height: 390px;
-  background-color: rgba(30, 143, 255, 0.37);
-  z-index: 1;
-}
-.small_re {
-  display:none;
-  position: absolute;
-  background-color: rgb(157, 148, 180);
-  width: 200px;
-  height: 1500px;
-  bottom: -30px;
-  left: 56px;
-  z-index: 3;
-}
-.small_re2 {
-  display:none;
-  position: absolute;
-  background-color: rgb(255, 255, 255);
-  width: 120px;
-  height: 20px;
-  bottom: 250px;
-  left: 70px;
-  z-index: 6;
-}
-.small_re3 {
-  display:none;
-  position: absolute;
-  background-color: rgb(81, 190, 253);
-  width: 100px;
-  height: 20px;
-  bottom: 150px;
-  left: 180px;
-  z-index: 7;
-}
-.small_re4 {
-  display:none;
-  position: absolute;
-  background-color: white;
-  width: 90px;
-  height: 20px;
-  left: 70px;
-  bottom: 700px;
-  z-index: 8;
-}
-.small_re5 {
-  display:none;
-  position: absolute;
-  background-color: rgb(81, 190, 253);
-  width: 120px;
-  height: 20px;
-  left: 160px;
-  bottom: 450px;
-  z-index: 8;
-}
-
-}
 
 </style>

@@ -7,7 +7,7 @@ export default new Vuetify({
     theme: {
       themes: {
         light: {
-          background: "#f1f7fb", 
+          background: "rgba(250,230,153,0.67)" ,
         },
       },
     },
