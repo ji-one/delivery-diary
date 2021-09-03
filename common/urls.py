@@ -8,6 +8,7 @@ app_name = 'common'
 
 urlpatterns = [
     path('signup/', views.signup),
+    path('signout/', views.signout),
     path('api-token-auth/', views.signin),
     path('api-token-auth/refresh/', views.refresh),
     path('update/info/', views.update_info),

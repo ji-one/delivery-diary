@@ -1,14 +1,22 @@
 <template>
-  <div class="pa-5">
-          <v-row>
-              <v-col cols="12" md="6" class="mb-4">
-                  <v-sheet height="500">
-                      <v-calendar
-                              ref="calendar"
-                              dark
-                      ></v-calendar>
-                  </v-sheet>
-              </v-col>
-          </v-row>
-  </div>
+  <v-container fill-height justify-center>
+    <v-layout column align-center>
+      <v-flex mt-10 >
+        <contribution />
+      </v-flex>
+      <!-- <v-flex mt-10>
+        <chart />
+      </v-flex> -->
+    </v-layout>
+  </v-container>
 </template>
+<script>
+import Contribution from "@/components/Dashboard/Contribution.vue";
+// import Chart from "@/components/Dashboard/Chart.vue";
+export default {
+  components: {
+    Contribution,
+    // Chart,
+  },
+};
+</script>

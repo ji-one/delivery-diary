@@ -7,7 +7,7 @@ from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import AllowAny
 from common.models import User
 from django.contrib.auth import login, authenticate
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 import jwt
 
 
@@ -15,14 +15,9 @@ import jwt
 @api_view(['POST'])
 def signup(request):
     username = request.data.get('username')
-    password = request.data.get('password')
-    password_confirmation = request.data.get('passwordConfirmation')
 
     if User.objects.filter(username=username).exists():
         return Response({'error': 'ID has already existed.'}, status=status.HTTP_400_BAD_REQUEST)
-
-    # if password != password_confirmation:
-    #     return Response({'error': 'Passwords do not match.'}, status=status.HTTP_400_BAD_REQUEST)
 
     serializer = UserSerializer(data=request.data)
 
@@ -41,6 +36,7 @@ def signin(request):
     user = authenticate(username=username, password=password)
     if user:
         login(request, user)
+        request.session['user_id'] = user.id
         encoded_jwt = jwt.encode(
             {'username': user.username, 'nickname': user.nickname, 'profile_image': str(user.profile_image), 'birthday': user.birthday.strftime('%Y-%m-%d'), 'phone_number': user.phone_number, 'address': user.address}, 'SECRET', algorithm='HS256').decode('utf-8')
         response = JsonResponse({"token": str(encoded_jwt)})
@@ -55,7 +51,6 @@ def update_info(request):
     user = User.objects.get(username=request.data.get('username'))
     user.nickname = request.data.get('nickname')
     user.birthday = request.data.get('birthday')
-    # user.profile_image = request.FILES['profile_image']
     user.phone_number = request.data.get('phone_number')
     user.address = request.data.get('address')
     user.save()
@@ -67,11 +62,6 @@ def update_info(request):
 def update_password(request):
     user = User.objects.get(username=request.data.get('username'))
     new_password = request.data.get('newPassword')
-    password_confirmation = request.data.get('passwordConfirmation')
-
-    # if new_password != password_confirmation:
-    #     return Response({'error': 'Passwords do not match.'}, status=status.HTTP_400_BAD_REQUEST)
-
     user.set_password(new_password)
     user.save()
     return Response({'message': 'Password updated successfully'}, status=status.HTTP_201_CREATED)
@@ -85,3 +75,11 @@ def refresh(request):
         {'username': user.username, 'nickname': user.nickname, 'profile_image': str(user.profile_image), 'birthday': user.birthday.strftime('%Y-%m-%d'), 'phone_number': user.phone_number, 'address': user.address}, 'SECRET', algorithm='HS256').decode('utf-8')
     response = JsonResponse({"token": str(encoded_jwt)})
     return response
+
+
+@api_view(['DELETE'])
+def signout(request):
+    if request.session['user_id']:
+        del(request.session['user_id'])
+        return HttpResponse(status=200)
+    return HttpResponse(status=401)

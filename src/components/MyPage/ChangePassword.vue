@@ -73,14 +73,14 @@ export default {
     changePassword() {
       const jwt = require("jsonwebtoken");
       this.axios
-        .patch("http://localhost:8000/common/update/password/", {
+        .patch("common/update/password/", {
           username: this.$store.state.username,
           newPassword: this.newPassword,
           passwordConfirmation: this.passwordConfirmation,
         })
         .then(() => {
           this.axios
-            .post("http://localhost:8000/common/api-token-auth/refresh/", {
+            .post("common/api-token-auth/refresh/", {
               username: this.$store.state.username,
             })
             .then((res) => {

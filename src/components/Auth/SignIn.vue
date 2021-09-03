@@ -52,7 +52,7 @@ export default {
     signin() {
       const jwt = require("jsonwebtoken");
       this.axios
-        .post("http://localhost:8000/common/api-token-auth/", this.credentials)
+        .post("/common/api-token-auth/", this.credentials)
         .then((res) => {
           this.token = res.data.token;
           sessionStorage.token = this.token;
