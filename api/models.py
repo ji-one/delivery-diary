@@ -17,3 +17,13 @@ class Diary(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Analysis(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    very_positive = models.IntegerField(default=0)
+    positive = models.IntegerField(default=0)
+    very_negative = models.IntegerField(default=0)
+    negative = models.IntegerField(default=0)
+    neutral = models.IntegerField(default=0)
