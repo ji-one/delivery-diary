@@ -1,7 +1,7 @@
 <template>
   <v-app :style="{ background: $vuetify.theme.themes.light.background }">
     <v-app-bar app color="blue lighten-4">
-      <router-link to="/">
+      <router-link to="/" style="text-decoration: none">
         <v-btn icon>
           <v-icon>mdi-home</v-icon>
         </v-btn></router-link
@@ -35,6 +35,7 @@
         large
         rounded
         text
+        to="/delivery"
         >배송 현황</v-btn
       >
       <v-btn

@@ -1,5 +1,5 @@
 <template>
-  <v-container fill-height fluid>
+  <v-container fill-height>
     <v-row justify="center" align="center">
       <v-col cols="5">
         <v-card>
@@ -63,7 +63,7 @@
             </v-form>
           </v-card-text>
           <v-card-actions class="justify-end">
-            <ChangePassword class="ml-0"/>
+            <ChangePassword class="ml-0" />
             <v-btn
               :disabled="!isValid"
               @click="update"
@@ -109,19 +109,17 @@ export default {
   methods: {
     update() {
       const jwt = require("jsonwebtoken");
-      this.axios
-        .patch("common/update/info/", this.userInfo)
-        .then(() => {
-          this.axios
-            .post("common/api-token-auth/refresh/", {
-              username: this.userInfo.username,
-            })
-            .then((res) => {
-              sessionStorage.token = res.data.token;
-              this.$store.commit("get_token", jwt.decode(sessionStorage.token));
-              alert("성공적으로 수정되었습니다.");
-            });
-        });
+      this.axios.patch("common/update/info/", this.userInfo).then(() => {
+        this.axios
+          .post("common/api-token-auth/refresh/", {
+            username: this.userInfo.username,
+          })
+          .then((res) => {
+            sessionStorage.token = res.data.token;
+            this.$store.commit("get_token", jwt.decode(sessionStorage.token));
+            alert("성공적으로 수정되었습니다.");
+          });
+      });
     },
     // onFileChange(event) {
     //   this.userInfo.profile_image = event.target.files[0];

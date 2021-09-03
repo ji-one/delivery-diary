@@ -1,5 +1,5 @@
 <template>
-  <v-container fill-height fluid>
+  <v-container fill-height>
     <v-row align="center" justify="center">
       <v-col cols="5">
         <component :is="component"></component>

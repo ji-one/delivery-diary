@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card min-width="1000">
     <v-card-title class="justify-center"><div>일기 로그 📒</div></v-card-title>
     <v-card-subtitle class="text-center">
       <div>
@@ -10,7 +10,7 @@
         해당 날짜를 클릭하면 그 날의 키워드들이 워드 클라우드로 나타나요!
       </div>
     </v-card-subtitle>
-    <v-card-actions>
+    <v-card-actions class="justify-center">
       <div id="cal-heatmap"></div>
     </v-card-actions>
   </v-card>
