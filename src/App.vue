@@ -1,6 +1,6 @@
 <template>
-  <v-app :style="{ background: $vuetify.theme.themes.light.background }">
-    <v-app-bar app color="blue lighten-4">
+  <v-app :style="{background: $vuetify.theme.themes.light.background}">
+    <v-app-bar app flat color="#FFEFBF"> <!--color="blue lighten-4"-->
       <router-link to="/">
         <v-btn icon>
           <v-icon>mdi-home</v-icon>

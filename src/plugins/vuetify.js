@@ -5,10 +5,11 @@ import Vuetify from "vuetify/lib/framework";
 Vue.use(Vuetify);
 
 export default new Vuetify({
-  theme: {
-    themes: {
-      light: {
-        background: "#f1f7fb", 
+    theme: {
+      themes: {
+        light: {
+          background: "rgba(250,230,153,0.67)" ,
+        },
       },
     },
   },
