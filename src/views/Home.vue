@@ -113,7 +113,7 @@
       </form>
     </div>
     <div class="btnWrap">
-      <btn @click="fnAddProc" class="btnAdd_btn">등록</btn>
+      <button @click="fnAddProc" class="btnAdd_btn">등록</button>
     </div>
   </div>
 </template>
@@ -157,7 +157,7 @@ export default {
       this.axios
         .post("api/", this.form)
         .then((res) => {
-          console.log(res)
+           alert(res.data.message)
         })
         .catch((err) => {
           console.log(err);
