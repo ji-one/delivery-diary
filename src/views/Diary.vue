@@ -56,17 +56,18 @@ export default {
     ],
   }),
   mounted() {
-    this.axios.get("api/diary").then((res) => {
-      res.data
-        .forEach((e) => {
+    this.axios
+      .get("api/diary")
+      .then((res) => {
+        res.data.forEach((e) => {
           this.diaries.push({
             title: e.fields.title,
             created_at: (e.fields.created_at + "").substring(0, 10),
           });
           console.log(e);
-        })
-        .catch((e) => console.log(e));
-    });
+        });
+      })
+      .catch((e) => console.log(e));
   },
 };
 </script>
