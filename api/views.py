@@ -12,6 +12,7 @@ from konlpy.tag import Okt
 import asyncio
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from django.core import serializers
 
 
 @api_view(['POST'])
@@ -25,14 +26,19 @@ def post(request):
         'weather'), content=content, content_len=len(content))
     diary.save()
 
-    # loop = asyncio.new_event_loop()
-    # asyncio.set_event_loop(loop)
-    # loop.run_until_complete(sentiment_analysis(content))
-    # loop.close()
-
     sentiment_analysis(user, content)  # TODO 비동기로 처리하고 싶다
-
     return Response({'message': 'Written successfully'}, status=status.HTTP_201_CREATED)
+
+
+@api_view(['GET'])
+def diary(request):
+    if not request.session.get('user_id'):
+        return HttpResponse(status=401)
+    user_id = request.session.get('user_id')
+    user = User.objects.get(pk=user_id)
+    diary = Diary.objects.filter(user=user).only('created_at', 'title')
+    diary = serializers.serialize('json', diary)
+    return HttpResponse(diary, content_type="text/json-comment-filtered")
 
 
 @api_view(['GET'])
