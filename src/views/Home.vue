@@ -9,18 +9,18 @@
       </center>
     </h1>
     <h2 class="diarywrite">WRITE ON YOUR LIFESTYLE & STORY</h2>
-   <div id="circle-wrapper">
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-  </div>
+    <div id="circle-wrapper">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
     <div class="AddWrap">
-      <form>
+      <form @click="checkStatus">
         <table class="tbAdd">
           <tr>
             <th aria-label="제목"></th>
@@ -57,10 +57,7 @@
               />
               <div class="radio__radio"></div>
               <label class="form-check-label" for="흐림">
-                <img
-                  src="../assets/cloudy_weather_icon.png"
-                  alt="weather-cloudy"
-                />
+                <img src="../assets/cloudy_weather_icon.png" alt="weather-cloudy" />
               </label>
               <input
                 v-model.number="weather"
@@ -71,10 +68,7 @@
               />
               <div class="radio__radio"></div>
               <label class="form-check-label" for="비">
-                <img
-                  src="../assets/rain_weather_icon.png"
-                  alt="weather-rainy"
-                />
+                <img src="../assets/rain_weather_icon.png" alt="weather-rainy" />
               </label>
               <input
                 v-model.number="weather"
@@ -85,10 +79,7 @@
               />
               <div class="radio__radio"></div>
               <label class="form-check-label" for="눈">
-                <img
-                  src="../assets/snowy_weather_icon.png"
-                  alt="weather-snowy"
-                />
+                <img src="../assets/snowy_weather_icon.png" alt="weather-snowy" />
               </label>
             </div>
           </tr>
@@ -115,27 +106,22 @@ export default {
     //변수 생성
     return {
       title: "",
-      content:"",
-      weather:"",
+      content: "",
+      weather: "",
     };
   },
   methods: {
-    checkStatus(){
-      if(!this.$store.state.login){
-        alert("로그인이 필요한 서비스입니다.")
+    checkStatus() {
+      if (!this.$store.state.login) {
+        alert("로그인이 필요한 서비스입니다.");
         this.$router.push({ path: "./signin" });
       }
-    },
-    fnList() {
-      //리스트 화면으로 이동 함수
-      this.$router.push({ path: "./list", query: this.body });
     },
     fnAddProc() {
       //등록 프로세스
       if (!this.title) {
         //제목이 없다면 값을 입력하라고 알려준다.
         alert("제목을 입력해 주세요");
-        this.$refs.subject.focus(); //방식으로 선택자를 찾는다.
         return;
       }
 
@@ -148,36 +134,36 @@ export default {
 
       this.axios
         .post("api/", this.form)
-        .then((res) => {
-           alert(res.data.message)
+        .then(() => {
+          alert("성공적으로 작성되었습니다.");
+          this.title = "";
+          this.content = "";
+          this.weather = "";
         })
         .catch((err) => {
           console.log(err);
         });
-         },
+    },
   },
 };
 </script>
 
 <style scoped>
-.title-logo { padding: 50px 0;}
-.logotext { 
+.title-logo {
+  padding: 50px 0;
+}
+.logotext {
   font-family: "IBM Plex Sans KR", sans-serif !important;
   font-weight: 700;
   font-size: 56px;
   color: #fff;
-  transition: all .5s;
+  transition: all 0.5s;
   text-shadow: 1px 2px 0 rgb(32, 95, 177);
 }
 .logotext:hover {
-   text-shadow: 1px 2px 0 rgb(97, 138, 209),
-                2px 4px 0 rgb(97, 138, 209),
-                3px 6px 0 rgb(97, 138, 209),
-                4px 8px 0 rgb(97, 138, 209),
-                5px 10px 0 rgb(97, 138, 209),
-                6px 12px 0 rgb(97, 138, 209),
-              
-                6px 12px 3px rgb(97, 138, 209);
+  text-shadow: 1px 2px 0 rgb(97, 138, 209), 2px 4px 0 rgb(97, 138, 209),
+    3px 6px 0 rgb(97, 138, 209), 4px 8px 0 rgb(97, 138, 209), 5px 10px 0 rgb(97, 138, 209),
+    6px 12px 0 rgb(97, 138, 209), 6px 12px 3px rgb(97, 138, 209);
 }
 .diarywrite {
   text-align: center;
@@ -186,7 +172,8 @@ export default {
 .diarywrite {
   font-family: "IBM Plex Sans KR", sans-serif !important;
   /*font-family: 'Raleway', sans-serif */
-  font-weight: 300;}
+  font-weight: 300;
+}
 
 /*.tbAdd{border-top:1px solid #888;}<<이 부분은 단순히 탑이 아니라 둘러싸는 걸로 만들었으면 한다.*/
 /*.tbAdd th, .tbAdd td {
@@ -206,9 +193,8 @@ export default {
   align-items: center;
   /*border: 1px solid rgb(230, 226, 226);*/
   border-radius: 5px;
- /* box-shadow: 0 0 20px rgba(0,0,0,0.15);*/
+  /* box-shadow: 0 0 20px rgba(0,0,0,0.15);*/
   z-index: 10;
-  
 }
 .tbAdd th {
   content: "";
@@ -218,8 +204,8 @@ export default {
   box-sizing: border-box;
 }
 .tbAdd td input {
-  font-family: 'Lato', sans-serif !important;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Lato", sans-serif !important;
+  font-family: "Raleway", sans-serif;
   font-weight: 300;
   font-size: 20px;
   width: 100%;
@@ -230,7 +216,7 @@ export default {
   outline: none;
   resize: none;
   color: rgb(77, 80, 94);
-  background-color: rgba(68,114,196,0.2);
+  background-color: rgba(68, 114, 196, 0.2);
   border-radius: 30px;
   text-align: center;
 }
@@ -311,7 +297,6 @@ export default {
   background: #f00;
 }
 .btn {
-  
   position: relative;
   color: black;
   text-decoration: none;
@@ -331,7 +316,7 @@ export default {
   background-color: #a3a1a7;
 }
 
-.btnadd_btn {
+.btnAdd_btn {
   position: relative;
   color: black;
   text-decoration: none;
@@ -352,24 +337,21 @@ export default {
   background-color: #0877ff;
 }
 
-#circle-wrapper { 
+#circle-wrapper {
   position: relative;
-
 }
 
 .circle {
   width: 246px;
   height: 246px;
   border-radius: 50%;
-  
-  
 }
 .circle:nth-child(1) {
- position: absolute;
- background-color: transparent;
- border: 1px solid rgba(0, 0, 0, 0.5);
- left: 100px;
- top: 100px;
+  position: absolute;
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  left: 100px;
+  top: 100px;
 }
 .circle:nth-child(2) {
   position: absolute;
@@ -379,16 +361,16 @@ export default {
 }
 .circle:nth-child(3) {
   position: absolute;
-  background-color: rgba(68,114,196,0.7);
+  background-color: rgba(68, 114, 196, 0.7);
   bottom: 100px;
   left: -100px;
 }
 .circle:nth-child(4) {
- position: absolute;
- background-color: transparent;
- border: 1px solid rgba(0, 0, 0, 0.5);
- right: 100px;
- top: 100px;
+  position: absolute;
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  right: 100px;
+  top: 100px;
 }
 .circle:nth-child(5) {
   position: absolute;
@@ -398,31 +380,28 @@ export default {
 }
 .circle:nth-child(6) {
   position: absolute;
-  background-color: rgba(68,114,196,0.7);
+  background-color: rgba(68, 114, 196, 0.7);
   bottom: 100px;
   right: -100px;
 }
 .circle:nth-child(7) {
   position: absolute;
   background-color: transparent;
-  border: 1px solid rgba(68,114,196,0.7);
+  border: 1px solid rgba(68, 114, 196, 0.7);
   top: 400px;
   left: -100px;
 }
 .circle:nth-child(8) {
   position: absolute;
-  background-color: rgba(68,114,196,1);
+  background-color: rgba(68, 114, 196, 1);
   top: 500px;
   right: -100px;
 }
 
 /*Media Query-반응형 웹*/
-@media screen and (max-width: 1000px){
-
+@media screen and (max-width: 1000px) {
 }
 /*반응형 웹 <=665*/
-@media screen and (max-width: 665px){
+@media screen and (max-width: 665px) {
 }
-  
-
 </style>
