@@ -37,8 +37,9 @@ def diary(request):
     user_id = request.session.get('user_id')
     user = User.objects.get(pk=user_id)
     diary = Diary.objects.filter(user=user).all()
-    diary = serializers.serialize(
-        'json', diary, fields=('title', 'created_at'))
+    # diary = serializers.serialize(
+    #     'json', diary, fields=('title', 'created_at'))
+    diary = serializers.serialize('json', diary)
     return HttpResponse(diary, content_type="text/json-comment-filtered")
 
 

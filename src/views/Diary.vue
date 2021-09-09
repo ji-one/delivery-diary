@@ -12,18 +12,28 @@
                 append-icon="mdi-magnify"
                 label="Search"
                 single-line
-                hide-details
               ></v-text-field>
             </v-card-title>
+            <v-dialog v-model="dialog" width="800">
+              <v-card height="700">
+                <v-card-title class="text-h5 grey lighten-2">
+                  {{ this.form.title }}
+                </v-card-title>
+                <v-card-subtitle>{{ this.form.created_at }}</v-card-subtitle>
+                <v-card-text>{{ this.form.content }}</v-card-text></v-card
+              ></v-dialog
+            >
             <v-data-table
               :headers="headers"
               :items="diaries"
               :search="search"
-              @click:row="detail"
+              @click:row="showDetail"
             >
               <template slot="items" slot-scope="props">
-                <td :class="headers[0].class">{{ props.item.title }}</td>
-                <td :class="headers[2].class">
+                <td :class="headers[0].class">
+                  {{ props.item.title }}
+                </td>
+                <td :class="headers[1].class">
                   {{ props.item.created_at }}
                 </td>
               </template>
@@ -39,8 +49,9 @@
 export default {
   name: "Board",
   data: () => ({
-    id: "",
+    form: {},
     search: "",
+    dialog: false,
     diaries: [],
     headers: [
       {
@@ -63,11 +74,20 @@ export default {
           this.diaries.push({
             title: e.fields.title,
             created_at: (e.fields.created_at + "").substring(0, 10),
+            content: e.fields.content,
+            weather: e.fields.weather,
           });
           console.log(e);
         });
       })
       .catch((e) => console.log(e));
+  },
+  methods: {
+    showDetail(data) {
+      console.log(data);
+      this.form = data;
+      this.dialog = true;
+    },
   },
 };
 </script>
